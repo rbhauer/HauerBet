@@ -1,0 +1,42 @@
+/* FixtureBox.css */
+.fixture-container {
+    max-width: 600px; /* Set a maximum width*/ 
+    margin: 20px auto; /* Center it horizontally with space on top/bottom */
+    padding: 20px;
+    border: 1px solid #ddd; /* Add a border around the container */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.fixture-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.fixture-time {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.team-container {
+    display: flex;
+    align-items: center; /* Aligns team name and button vertically */
+    justify-content: space-between; /* Spaces out team name and button */
+}
+
+.team-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-right: 15px; /* Adds space between team name and button */
+}
+
+.btn-secondary {
+    width: 160px; /* Set button width */
+    font-weight: bold;
+}
+
+.mb-3 {
+    margin-bottom: 15px;
+}
