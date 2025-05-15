@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "back_end", "back_end", "{D2043AFF-54BF-C2E6-1270-7443933C929B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HauerBet", "back_end\HauerBet\HauerBet.csproj", "{3CA879EF-B199-9E87-CC70-678650AAB3AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CA879EF-B199-9E87-CC70-678650AAB3AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA879EF-B199-9E87-CC70-678650AAB3AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA879EF-B199-9E87-CC70-678650AAB3AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA879EF-B199-9E87-CC70-678650AAB3AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3CA879EF-B199-9E87-CC70-678650AAB3AC} = {D2043AFF-54BF-C2E6-1270-7443933C929B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {926BEB3B-970C-4EBC-9D98-8E7A97F1C89D}
+	EndGlobalSection
+EndGlobal
