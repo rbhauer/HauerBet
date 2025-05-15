@@ -42,7 +42,7 @@ function LoginPage({currentBalance_Login})
           
               if (response.ok) { // Check if response went through
                 setActiveUser();
-                currentBalance_Login(fetchActiveBalance());
+                //currentBalance_Login(fetchActiveBalance());
                 setShowLoginModal_success(true);
                 setPassword("");
                   return response.text();
