@@ -27,6 +27,7 @@ function App() {
            setCurrentBalanceMain('N/A');
          }
  }
+
   return (
     <Router>
       <NavHeader currentBalance = {currentBalanceMain}/>
