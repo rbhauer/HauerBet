@@ -32,9 +32,11 @@ function App() {
     <Router>
       <NavHeader currentBalance = {currentBalanceMain}/>
         <Routes>
-          <Route exact path="/" element={<FixtureHandler setCurrentBalanceHandler={setCurrentBalanceMain} />}></Route>
+          <Route exact path="/" element={<FixtureHandler setCurrentBalanceHandler={setCurrentBalanceMain} league={"NFL"} />}></Route>
           <Route path="/account" element={<AccountPage />}></Route>
           <Route path="/login" element={<LoginPage currentBalance_Login={setCurrentBalanceMain}/>}></Route>
+          <Route exact path="/NBA" element={<FixtureHandler setCurrentBalanceHandler={setCurrentBalanceMain} league={"NBA"} />}></Route>
+          <Route exact path="/NFL" element={<FixtureHandler setCurrentBalanceHandler={setCurrentBalanceMain} league={"NFL"} />}></Route>
         </Routes>
     </Router>
   );

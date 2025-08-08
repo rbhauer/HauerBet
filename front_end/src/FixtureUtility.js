@@ -3,7 +3,6 @@ export const displayDate = (inDateString) =>
     {
       const outDate = new Date(inDateString);
       const prettyTimeArray =outDate.toLocaleTimeString().split(":");
-      console.log("Display Date Running");
       return outDate.toDateString().substring(0,10) + ", " + prettyTimeArray[0] + ":" + prettyTimeArray[1] + " " + prettyTimeArray[2].substring(3,5);
     }
 

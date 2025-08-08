@@ -7,13 +7,18 @@ import FixtureBox from './FixtureBox';
 import { useState, useEffect } from 'react';
 import App from './App';
 import axios from 'axios';
+import FixtureSubNavBar from './FixtureSubNavBar';
 
 
-function FixtureHandler({setCurrentBalanceHandler}) {
+
+function FixtureHandler({setCurrentBalanceHandler, league}) {
 
   const [fixtures, setFixtures] = useState([]);
   const hostname = 'http://127.0.0.1:5298';
   const inData = [];
+
+  
+
   
 
   async function fetchFixturesDB() {
@@ -41,7 +46,21 @@ function FixtureHandler({setCurrentBalanceHandler}) {
 
   function fetchFixturesTheOddsAPI()
   {
-    axios.get('https://api.the-odds-api.com/v4/sports/basketball_nba/odds', {
+    let leagueString = '';
+
+    switch (league) {
+
+      case "NBA":
+        leagueString = 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds';
+        break;  
+      case "NFL":
+        leagueString = 'https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds';
+        break;
+        default:
+        console.error("Sport not supported");
+    }
+  console.log(process.env.REACT_APP_ODDS_API_KEY);
+axios.get(leagueString, {
       params: {
         apiKey:  process.env.REACT_APP_ODDS_API_KEY,  //environment variable for secrecy
         regions: 'us',
@@ -100,6 +119,9 @@ function FixtureHandler({setCurrentBalanceHandler}) {
       fixture.awayVig = awayArray[0].price;
 
       fixture.fixtureDate = game.commence_time;
+
+      fixture.league = league; // Set the league based on the passed prop
+
       inData.push(fixture);
       
       fetch(hostname + '/addFixtures',{
@@ -116,23 +138,28 @@ function FixtureHandler({setCurrentBalanceHandler}) {
 
   // Fetch fixtures from the server when the component mounts
   useEffect(() => {
-    //only execute the fetch if the topics array is empty
-    //if (fixtures.length === 0) {
-      
       fetchFixturesDB();
-      //getSports();
-    //};
+    
   }, []);
 
 
   return (
     <Container>
       <Row>
+        <FixtureSubNavBar></FixtureSubNavBar>
+      </Row>
+
+      <Row>
         <Col >
         
         </Col>
         <Col md="auto">
-          {fixtures.map((item, i) => (
+          {fixtures.filter((item) => item.league === league).length === 0 ? 
+          <Container className="border rounded p-4 text-center mt-4" style={{ borderColor: '#d3d3d3' }}>
+      <h5 className="text-muted">There are no {league} games scheduled</h5>
+    </Container>
+          :
+           fixtures.filter((item) => item.league === league).map((item, i) => (
             <FixtureBox 
               key = {i}
               homeTeam={item.homeTeam}
@@ -143,7 +170,9 @@ function FixtureHandler({setCurrentBalanceHandler}) {
               awayLine={item.awayLine}
               fixtureID={item.fixtureID}
               inDate={item.fixtureDate} 
-              setCurrentBalanceBox={setCurrentBalanceHandler}/>
+              setCurrentBalanceBox={setCurrentBalanceHandler}
+              league = {item.league}
+              />
           ))}
         </Col>
         <Col>

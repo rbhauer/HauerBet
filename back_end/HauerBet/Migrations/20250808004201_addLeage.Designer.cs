@@ -2,6 +2,7 @@
 using HauerBet;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HauerBet.Migrations
 {
     [DbContext(typeof(HauerBetContext))]
-    partial class HauerBetContextModelSnapshot : ModelSnapshot
+    [Migration("20250808004201_addLeage")]
+    partial class addLeage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -50,10 +53,6 @@ namespace HauerBet.Migrations
                     b.Property<int>("HomeVig")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("League")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.ToTable("Fixtures");
@@ -71,10 +70,6 @@ namespace HauerBet.Migrations
 
                     b.Property<int>("Id")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("League")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<float>("Payout")
                         .HasColumnType("REAL");

@@ -14,8 +14,7 @@ public enum RESULT
 
 public class Wager
 {
-    //try to connect to fixture database - can maybe make active/inactive fixtures? 
-    
+    //bloated right now
     public int Id { get; set; }
    [Key]
     public int Wager_Id { get; set; }
@@ -32,16 +31,18 @@ public class Wager
     public string WagerDate { get; set; }
 
     public RESULT Status { get; set; }
+    
+    public string League { get; set; }
 
 public Wager()
-{
+    {
 
-}
-public Wager(Wager inWager)
-{
-    if (inWager.Id < 0)
+    }
+    public Wager(Wager inWager)
+    {
+        if (inWager.Id < 0)
         {
-            this.Id = Random.Shared.Next(1000, 9999);
+            this.Id = Random.Shared.Next(10000, 99999);
         }
         else
         {
@@ -49,13 +50,13 @@ public Wager(Wager inWager)
         }
         if (inWager.Wager_Id < 0)
         {
-            this.Wager_Id = Random.Shared.Next(1000, 9999);
+            this.Wager_Id = Random.Shared.Next(10000, 99999);
         }
         else
         {
             this.Wager_Id = inWager.Wager_Id;
         }
-    this.FixtureID = inWager.FixtureID;
+        this.FixtureID = inWager.FixtureID;
         this.Team = inWager.Team;
         this.Payout = inWager.Payout;
         this.WagerAmount = inWager.WagerAmount;
@@ -63,13 +64,14 @@ public Wager(Wager inWager)
         this.Vig = inWager.Vig;
         this.WagerDate = inWager.WagerDate;
         this.Status = inWager.Status;
+        this.League = inWager.League;
 
 }
-    public Wager(int id, int wager_Id, string fixtureID, string team, float wagerAmount, float payout, string userId, float spread, int Vig, string wagerDate, RESULT status)
+    public Wager(int id, int wager_Id, string fixtureID, string team, float wagerAmount, float payout, string userId, float spread, int Vig, string wagerDate, RESULT status, string league)
     {
         if (id < 0)
         {
-            this.Id = Random.Shared.Next(1000, 9999);
+            this.Id = Random.Shared.Next(10000, 99999);
         }
         else
         {
@@ -77,7 +79,7 @@ public Wager(Wager inWager)
         }
         if (wager_Id < 0)
         {
-            this.Wager_Id = Random.Shared.Next(1000, 9999);
+            this.Wager_Id = Random.Shared.Next(10000, 99999);
         }
         else
         {
@@ -91,6 +93,7 @@ public Wager(Wager inWager)
         this.Spread = spread;
         this.Vig = Vig;
         this.WagerDate = wagerDate;
-        this.Status = status; 
+        this.Status = status;
+        this.League = league;
     }
 }

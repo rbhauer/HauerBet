@@ -5,16 +5,13 @@ import { fetchActiveUser, fetchActiveBalance, updateActiveBalance } from './User
 import { displayDate, abbreviatedTeamNameNBA, RESULT } from './FixtureUtility';
 import { BalldontlieAPI } from "@balldontlie/sdk";
 
-function AccountPage({ }) {
+function AccountPage() {
   const hostname = 'http://127.0.0.1:5298';
   const [activeUser, setActiveUser] = useState('');
   const [currentBalance, setCurrentBalance] = useState(' N/A');
   const [activeWagers, setActiveWagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [DespoitAmount, setDepositAmount] = useState(0);
-  const [resultText, setResultText] = useState("");
-
-
 
   useEffect(() => {
     //only execute if no active user
@@ -23,14 +20,6 @@ function AccountPage({ }) {
     }
     fetchActiveWagers();
   }, []);
-
-  function checkWagerAction(inWager) {
-    const today = new Date();
-    const checkDate = new Date(inWager.wagerDate);
-    if (checkDate < today) {
-      checkWinLoss(inWager);
-    }
-  }
 
   async function getUserandBalance() {
     //get active user
@@ -80,7 +69,7 @@ function AccountPage({ }) {
         return games;
       } */
 
-  async function fetchGame(inDate, checkTeam) {
+  async function fetchGame(inDate, checkTeam, league) {
     const testDate = new Date(inDate);
 
     const year = testDate.getFullYear();
@@ -97,7 +86,17 @@ function AccountPage({ }) {
     }
     const checkDate = (year + "-" + month + "-" + day);
     const api = new BalldontlieAPI({ apiKey: process.env.REACT_APP_BALL_DONT_LIE_KEY });
-    const games = await api.nba.getGames({ dates: [checkDate] });
+    let games = [];
+
+    if (league.localeCompare("NFL") === 0)
+    {
+        games = await api.nfl.getGames({ dates: [checkDate] });
+    }
+    else if (league.localeCompare("NBA") === 0)
+    {
+        games = await api.nba.getGames({ dates: [checkDate] });
+    }
+    
     const foundGame = games.data.filter(game => ((game.home_team.full_name.localeCompare(checkTeam) === 0) || game.visitor_team.full_name.localeCompare(checkTeam) === 0));
     return foundGame
   }
@@ -130,7 +129,7 @@ function AccountPage({ }) {
   }
 
   async function getResult(inWager) {
-    const targetGame = await fetchGame(inWager.wagerDate, abbreviatedTeamNameNBA(inWager.team));
+    const targetGame = await fetchGame(inWager.wagerDate, abbreviatedTeamNameNBA(inWager.team), inWager.league);
     const checker = checkWinLoss(targetGame[0], inWager.team, inWager.spread);
     return checker;
   }

@@ -17,7 +17,9 @@ public class Fixture
     public int HomeVig{get; set;} 
     public int AwayVig{get; set;} 
 
-    public string FixtureDate{get; set;} 
+    public string FixtureDate{get; set;}
+
+    public string League { get; set; }
 
     public Fixture()
     {
@@ -25,15 +27,15 @@ public class Fixture
     }
 
     public Fixture(Fixture inFixture)
-{
-    if (inFixture.Id < 0)
+    {
+        if (inFixture.Id < 0)
         {
-            this.Id = Random.Shared.Next(1000, 9999);
+            this.Id = Random.Shared.Next(100000, 999999);
         }
         else
         {
             this.Id = inFixture.Id;
-        }       
+        }
 
         this.FixtureID = inFixture.FixtureID;
         this.HomeTeam = inFixture.HomeTeam;
@@ -43,18 +45,21 @@ public class Fixture
         this.HomeVig = inFixture.HomeVig;
         this.AwayVig = inFixture.AwayVig;
         this.FixtureDate = inFixture.FixtureDate;
+        this.League = inFixture.League;
 
 }
 
-    public Fixture(int id, string fixtureID, string homeTeam, string awayTeam, float homeLine, float awayLine, int homeVig, int awayVig, string fixtureDate)
+    public Fixture(int id, string fixtureID, string homeTeam, string awayTeam, float homeLine, float awayLine, int homeVig, int awayVig, string fixtureDate, string league)
     {
-         if (id < 0){
-            this.Id = Random.Shared.Next(1000,9999);
+        if (id < 0)
+        {
+            this.Id = Random.Shared.Next(1000, 9999);
         }
-        else{
+        else
+        {
             this.Id = id;
         }
-        
+
         this.FixtureID = fixtureID;
         this.HomeTeam = homeTeam;
         this.AwayTeam = awayTeam;
@@ -63,5 +68,6 @@ public class Fixture
         this.HomeVig = homeVig;
         this.AwayVig = awayVig;
         this.FixtureDate = fixtureDate;
+        this.League = league; 
     }
 }

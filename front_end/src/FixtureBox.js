@@ -6,7 +6,7 @@ import { displayDate, RESULT } from './FixtureUtility';
 import { fetchActiveUser, fetchActiveBalance } from './UserUtility';
 
 
-function FixtureBox({ key, homeTeam, homeLine, awayTeam, awayLine, homeVig, awayVig, fixtureID, inDate, setCurrentBalanceBox}) {
+function FixtureBox({ key, homeTeam, homeLine, awayTeam, awayLine, homeVig, awayVig, fixtureID, inDate, setCurrentBalanceBox, league}) {
     const hostname = 'http://127.0.0.1:5298';
 
     const [show, setShow] = useState(false);
@@ -49,7 +49,7 @@ function FixtureBox({ key, homeTeam, homeLine, awayTeam, awayLine, homeVig, away
     async function newWagerCheck()
     {
         const user = await fetchActiveUser();
-        const check = user.localeCompare("Please Login");
+
         if (user.localeCompare("Please Login") === 0)
         {
             handleClose();
@@ -71,7 +71,7 @@ function FixtureBox({ key, homeTeam, homeLine, awayTeam, awayLine, homeVig, away
     const newWager = () => {
 
         
-
+        console.log("League: " + league);
         const newWager = {
           Id: -1,
           Wager_Id: -1,
@@ -83,7 +83,8 @@ function FixtureBox({ key, homeTeam, homeLine, awayTeam, awayLine, homeVig, away
           Spread: betLine,
           Vig: betVig, 
           WagerDate: inDate,
-          Status: RESULT.PENDING
+          Status: RESULT.PENDING,
+          League: league
         };
 
         console.log(newWager);
