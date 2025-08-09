@@ -19,7 +19,7 @@ function AccountPage() {
       getUserandBalance();
     }
     fetchActiveWagers();
-  }, []);
+  });
 
   async function getUserandBalance() {
     //get active user
@@ -161,7 +161,7 @@ function AccountPage() {
     }
     else if (wager.status === RESULT.PENDING && today < wager.wagerDate)
     {
-      const wagerResult = getResult(wager).then((result) => { 
+      getResult(wager).then((result) => { 
         if (result === RESULT.WIN)
         {
           wager.status = RESULT.WIN;

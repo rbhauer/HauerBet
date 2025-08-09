@@ -3,13 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {Link} from 'react-router-dom';
 
-import { useState, useEffect } from 'react';
-
-
 
 function NavHeader({currentBalance}) {
-
-
 
     return (
         <>
@@ -17,9 +12,9 @@ function NavHeader({currentBalance}) {
             <Container>
               <Navbar.Brand href="#home">HauerBet</Navbar.Brand>
               <Nav className="me-auto">
-                <Nav.Link eventKey="/" as={Link} to="/">Sportsbook</Nav.Link>
-                <Nav.Link eventKey="account" as={Link} to="/account">Account</Nav.Link>
-                <Nav.Link eventKey="login" as={Link} to="/login">Login</Nav.Link>
+                <Nav.Link eventKey="/" as={Link} exact activeClassName="active" to="/" >Sportsbook</Nav.Link>
+                <Nav.Link eventKey="account" as={Link} exact activeClassName="active" to="/account" >Account</Nav.Link>
+                <Nav.Link eventKey="login" as={Link} exact activeClassName="active" to="/login" >Login</Nav.Link>
               </Nav>
               <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>

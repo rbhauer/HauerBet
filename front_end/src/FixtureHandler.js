@@ -27,7 +27,7 @@ function FixtureHandler({setCurrentBalanceHandler, league}) {
       const response = await fetch(hostname + '/getFixtures');
       const data = await response.json();
       setFixtures(data);
-      console.log(data);
+      //console.log(data);
       
     } catch (error) {
       console.error('Error fetching fixtures:', error);
@@ -159,7 +159,7 @@ axios.get(leagueString, {
       <h5 className="text-muted">There are no {league} games scheduled</h5>
     </Container>
           :
-           fixtures.filter((item) => item.league === league).map((item, i) => (
+           fixtures.filter((item) => item.league === league).sort((a,b) => (a.fixtureDate - b.fixtureDate)).map((item, i) => (
             <FixtureBox 
               key = {i}
               homeTeam={item.homeTeam}

@@ -1,8 +1,0 @@
-[
-    {"fixtureID": 0, "homeTeam": "Florida", "awayTeam": "Georgia", "homeLine": -4.5, "awayLine": 4.5, "vig": -110, "Date": "Friday, 3:30pm"},
-    {"fixtureID": 1,"homeTeam": "Air Force", "awayTeam": "Army", "homeLine": -9.5, "awayLine": 9.5, "vig": -115, "Date": "Friday, 7:30pm"},
-    {"fixtureID": 2,"homeTeam": "Georgia Tech", "awayTeam": "Florida State", "homeLine": -1.5, "awayLine": 1.5, "vig": -115, "Date": "Saturday, 11:00am"},
-    {"fixtureID": 3,"homeTeam": "Ole Miss", "awayTeam": "Alabama", "homeLine": 8.0, "awayLine": -8.0, "vig": -110, "Date": "Saturday, 3:30pm"},
-    {"fixtureID": 4,"homeTeam": "Va. Tech", "awayTeam": "Stanford", "homeLine": 2.5, "awayLine": -2.5, "vig": -115, "Date": "Saturday, 3:30pm"},
-    {"fixtureID": 5,"homeTeam": "USC", "awayTeam": "Ohio State", "homeLine": 11.0, "awayLine": -11.0, "vig": -110, "Date": "Saturday, 7:30pm"}
-]

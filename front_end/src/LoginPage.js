@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, Container, Modal, NavLink } from 'react-bootstrap';
 import { fetchActiveBalance } from './UserUtility';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function LoginPage({currentBalance_Login}) 
 {
@@ -16,11 +16,13 @@ function LoginPage({currentBalance_Login})
   const [showLoginModal_success, setShowLoginModal_success] = useState(false);
   const [showLoginModal_failure, setShowLoginModal_failure] = useState(false);  
 
+  const navigate = useNavigate();
+
   // Handle login form submission
   function Authenticate(e)
   {
     e.preventDefault();
-      console.log("RUNNING" + username);
+      console.log("Authenticate" + username);
       fetch(hostname+'/login',
           {
               method: "POST",
@@ -80,8 +82,16 @@ function LoginPage({currentBalance_Login})
               password: password,
           }
       )
-  })
+    })
+    newBalanceCheck();
   }
+
+      async function newBalanceCheck()
+      {
+          const currentBalanceBox = await fetchActiveBalance();
+          currentBalance_Login(currentBalanceBox);
+      }
+  
 
   
   function NewUser(e){
@@ -113,6 +123,14 @@ function LoginPage({currentBalance_Login})
     setNewPassword("");
     setShowModal(false); 
 }
+
+function successModalHandler()
+{
+  setShowLoginModal_success(false);
+  navigate('/account ');
+}
+
+
 
   return (
     <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
@@ -214,7 +232,7 @@ function LoginPage({currentBalance_Login})
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={()=>setShowLoginModal_success(false)}>Close</Button>
+          <Button variant="secondary" onClick={()=>successModalHandler()}>Close</Button>
         </Modal.Footer>
       </Modal>
    
